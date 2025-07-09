@@ -37,6 +37,8 @@ Uploaded files are stored in the `uploads/` directory (created automatically at 
 When the server starts, any files already in the `uploads/` folder are
 automatically loaded back into the knowledge base.
 
-If the UI displays `Failed to fetch response` or you receive an error stating
-`API key not configured`, double-check that the OpenAI key is available to the
-server process.
+If the UI displays `Failed to fetch response` the browser could not reach the
+server. Make sure the Node.js process is running and accessible at the
+configured URL. If you instead see `API key not configured`, verify that the
+`OPENAI_API_KEY` variable is loaded for the server process (for example via a
+`.env` file or your hosting provider's environment settings).

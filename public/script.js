@@ -11,13 +11,20 @@ document.getElementById('askForm').addEventListener('submit', async (e) => {
       body: JSON.stringify({ text })
     });
 
-    const data = await res.json();
     if (!res.ok) {
-      resEl.textContent = data.error || 'Error';
+      let message = 'Error';
+      try {
+        const data = await res.json();
+        message = data.error || message;
+      } catch (e) {
+        message = await res.text();
+      }
+      resEl.textContent = message;
       return;
     }
 
-    resEl.textContent = data.answer || data.error;
+    const data = await res.json();
+    resEl.textContent = data.answer || 'No response';
   } catch (err) {
     resEl.textContent = 'Failed to fetch response';
   }
