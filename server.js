@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/knowledge', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'knowledge.html'));
+  res.sendFile('knowledge.html', { root: path.join(__dirname, 'public') });
 });
 
 let knowledgeBase = [];

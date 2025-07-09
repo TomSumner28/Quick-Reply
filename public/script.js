@@ -4,14 +4,18 @@ document.getElementById('askForm').addEventListener('submit', async (e) => {
   const resEl = document.getElementById('response');
   resEl.textContent = 'Loading...';
 
-  const res = await fetch('/api/ask', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ text })
-  });
+  try {
+    const res = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text })
+    });
 
-  const data = await res.json();
-  resEl.textContent = data.answer || data.error;
+    const data = await res.json();
+    resEl.textContent = data.answer || data.error;
+  } catch (err) {
+    resEl.textContent = 'Failed to fetch response';
+  }
 });
 
 
