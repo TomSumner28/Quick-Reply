@@ -1,6 +1,6 @@
 # Quick-Reply Portal
 
-This project is a simple web application to send questions to ChatGPT and manage a knowledge base of uploaded documents. A dark/light mode toggle is provided.
+This project is a simple web application to send questions or email text to ChatGPT and manage a knowledge base of uploaded documents. The UI offers a dark/light mode toggle and allows viewing and deleting uploaded documents.
 
 ## Requirements
 
@@ -24,4 +24,4 @@ npm start
 
 The application runs on `http://localhost:3000`.
 
-Uploaded files are stored in the `uploads/` directory and are used as additional context when querying ChatGPT.
+Uploaded files are stored in the `uploads/` directory and can be viewed or removed from the Knowledge Base modal. They are used as additional context when querying ChatGPT.

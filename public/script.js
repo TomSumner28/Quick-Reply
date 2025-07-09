@@ -1,14 +1,13 @@
 document.getElementById('askForm').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const email = document.getElementById('email').value;
-  const question = document.getElementById('question').value;
+  const text = document.getElementById('inputText').value;
   const resEl = document.getElementById('response');
   resEl.textContent = 'Loading...';
 
   const res = await fetch('/api/ask', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, question })
+    body: JSON.stringify({ text })
   });
 
   const data = await res.json();
@@ -21,17 +20,36 @@ const closeKb = document.getElementById('closeKb');
 const uploadForm = document.getElementById('uploadForm');
 const fileList = document.getElementById('fileList');
 
-kbBtn.onclick = () => kbModal.classList.remove('hidden');
+async function loadKnowledge() {
+  fileList.innerHTML = '';
+  const res = await fetch('/api/knowledge');
+  const files = await res.json();
+  files.forEach(f => {
+    const li = document.createElement('li');
+    li.textContent = f.name + ' ';
+    const del = document.createElement('button');
+    del.textContent = 'Delete';
+    del.onclick = async () => {
+      await fetch(`/api/knowledge/${f.id}`, { method: 'DELETE' });
+      li.remove();
+    };
+    li.appendChild(del);
+    fileList.appendChild(li);
+  });
+}
+
+kbBtn.onclick = () => {
+  kbModal.classList.remove('hidden');
+  loadKnowledge();
+};
 closeKb.onclick = () => kbModal.classList.add('hidden');
 
 uploadForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(uploadForm);
   const res = await fetch('/api/upload', { method: 'POST', body: formData });
-  const data = await res.json();
-  const li = document.createElement('li');
-  li.textContent = data.path || data.error;
-  fileList.appendChild(li);
+  await res.json();
+  loadKnowledge();
 });
 
 const modeToggle = document.getElementById('modeToggle');

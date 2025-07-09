@@ -19,14 +19,33 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
     return res.status(400).json({ error: 'No file uploaded' });
   }
   const filePath = path.join(__dirname, req.file.path);
-  knowledgeBase.push(filePath);
-  res.json({ status: 'success', path: filePath });
+  knowledgeBase.push({ path: filePath, name: req.file.originalname });
+  res.json({
+    status: 'success',
+    file: { id: knowledgeBase.length - 1, name: req.file.originalname }
+  });
+});
+
+app.get('/api/knowledge', (req, res) => {
+  const files = knowledgeBase.map((f, i) => ({ id: i, name: f.name }));
+  res.json(files);
+});
+
+app.delete('/api/knowledge/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const file = knowledgeBase[id];
+  if (!file) {
+    return res.status(404).json({ error: 'Not found' });
+  }
+  fs.unlink(file.path, () => {});
+  knowledgeBase.splice(id, 1);
+  res.json({ status: 'deleted' });
 });
 
 app.post('/api/ask', async (req, res) => {
-  const { email, question } = req.body;
-  if (!email || !question) {
-    return res.status(400).json({ error: 'Email and question required' });
+  const { text } = req.body;
+  if (!text) {
+    return res.status(400).json({ error: 'Text required' });
   }
 
   const apiKey = process.env.OPENAI_API_KEY;
@@ -41,13 +60,16 @@ app.post('/api/ask', async (req, res) => {
     let docsText = '';
     for (const file of knowledgeBase) {
       try {
-        docsText += fs.readFileSync(file, 'utf8') + '\n';
+        docsText += fs.readFileSync(file.path, 'utf8') + '\n';
       } catch (e) {
-        console.error('Error reading', file, e);
+        console.error('Error reading', file.path, e);
       }
     }
 
-    const prompt = `Documents:\n${docsText}\n\nQuestion from ${email}: ${question}`;
+    const prompt = `You are an assistant for The Reward Collection (www.therewardcollection.com).\n` +
+      `Use the following knowledge base documents when relevant:\n${docsText}\n\n` +
+      `User input: ${text}\n` +
+      `If the input is an email, craft a professional reply. Otherwise, answer the question.`;
 
     const completion = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',

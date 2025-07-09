@@ -59,3 +59,11 @@ body.dark .modal-content {
   float: right;
   cursor: pointer;
 }
+
+#fileList li {
+  margin-top: 0.5rem;
+}
+
+#fileList button {
+  margin-left: 0.5rem;
+}
