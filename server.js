@@ -4,7 +4,7 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const { Configuration, OpenAIApi } = require('openai');
+const OpenAI = require('openai');
 
 const app = express();
 const uploadDir = path.join(__dirname, 'uploads');
@@ -79,8 +79,7 @@ app.post('/api/ask', async (req, res) => {
   }
 
   try {
-    const configuration = new Configuration({ apiKey });
-    const openai = new OpenAIApi(configuration);
+    const openai = new OpenAI({ apiKey });
 
     let docsText = '';
     for (const file of knowledgeBase) {
@@ -96,12 +95,12 @@ app.post('/api/ask', async (req, res) => {
       `User input: ${text}\n` +
       `If the input is an email, craft a professional reply. Otherwise, answer the question.`;
 
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }]
     });
 
-    res.json({ answer: completion.data.choices[0].message.content });
+    res.json({ answer: completion.choices[0].message.content });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message || 'Failed to process question' });
