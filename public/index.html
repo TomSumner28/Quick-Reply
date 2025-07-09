@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Reward Collection Quick Reply Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="light">
+  <header>
+    <h1>The Reward Collection Quick Reply Portal</h1>
+    <div class="controls">
+      <button id="kbBtn">Knowledge Base</button>
+      <button id="modeToggle">Dark Mode</button>
+    </div>
+  </header>
+  <main>
+    <form id="askForm">
+      <input type="email" id="email" placeholder="Your email" required />
+      <textarea id="question" placeholder="Type your question here" required></textarea>
+      <button type="submit">Ask</button>
+    </form>
+    <div id="response"></div>
+  </main>
+
+  <div id="kbModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeKb" class="close">&times;</span>
+      <h2>Upload Documents</h2>
+      <form id="uploadForm">
+        <input type="file" name="file" />
+        <button type="submit">Upload</button>
+      </form>
+      <ul id="fileList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
