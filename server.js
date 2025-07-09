@@ -104,7 +104,7 @@ app.post('/api/ask', async (req, res) => {
     res.json({ answer: completion.data.choices[0].message.content });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to process question' });
+    res.status(500).json({ error: err.message || 'Failed to process question' });
   }
 });
 

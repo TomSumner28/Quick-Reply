@@ -14,11 +14,15 @@ This project is a simple web application to send questions or email text to Chat
 npm install
 ```
 
-Create a `.env` file or set the environment variable `OPENAI_API_KEY` with your OpenAI API key. Example `.env` file:
+Create a `.env` file or otherwise set the environment variable `OPENAI_API_KEY` with your OpenAI API key. Example `.env` file:
 
 ```
 OPENAI_API_KEY=your-key-here
 ```
+
+Ensure this variable is also configured in your hosting provider (for example in
+Vercel's project settings) so the server can authenticate with OpenAI. If the
+key is missing the server will respond with `API key not configured`.
 
 ## Running
 
@@ -32,3 +36,7 @@ Uploaded files are stored in the `uploads/` directory (created automatically at 
 
 When the server starts, any files already in the `uploads/` folder are
 automatically loaded back into the knowledge base.
+
+If the UI displays `Failed to fetch response` or you receive an error stating
+`API key not configured`, double-check that the OpenAI key is available to the
+server process.
