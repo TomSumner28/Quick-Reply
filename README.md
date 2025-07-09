@@ -1,6 +1,6 @@
 # Quick-Reply Portal
 
-This project is a simple web application to send questions or the body of an email to ChatGPT. If the text looks like an email, ChatGPT replies with a draft response. Otherwise it answers the question. The interface includes a dark/light mode toggle.
+This project is a simple web application to send questions or the body of an email to ChatGPT. If the text looks like an email, ChatGPT replies with a draft response. Otherwise it answers the question. The interface includes a dark/light mode toggle and a small knowledge base where you can upload company documents (PDF, text, spreadsheets, etc.). Uploaded files are stored on the server and their contents are provided to ChatGPT when crafting a reply.
 
 ## Requirements
 
@@ -39,3 +39,9 @@ server. Make sure the Node.js process is running and accessible at the
 configured URL. If you instead see `API key not configured`, verify that the
 `OPENAI_API_KEY` variable is loaded for the server process (for example via a
 `.env` file or your hosting provider's environment settings).
+
+### Knowledge Base
+
+Visit `/knowledge.html` to upload or remove documents. These files are stored in
+the `uploads/` directory (which is ignored by git) and are loaded each time the
+server starts. Their contents help ChatGPT craft more relevant replies.
