@@ -14,7 +14,9 @@ This project is a simple web application to send questions or email text to Chat
 npm install
 ```
 
-Create a `.env` file or otherwise set the environment variable `OPENAI_API_KEY` with your OpenAI API key. Example `.env` file:
+Create a `.env` file in the project root. The application uses the
+[`dotenv`](https://www.npmjs.com/package/dotenv) package to load this file, so
+your OpenAI key can be stored outside the code. Example `.env` file:
 
 ```
 OPENAI_API_KEY=your-key-here
