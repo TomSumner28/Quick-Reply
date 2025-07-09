@@ -29,3 +29,6 @@ npm start
 The application runs on `http://localhost:3000`.
 
 Uploaded files are stored in the `uploads/` directory (created automatically at runtime) and can be viewed or removed from `knowledge.html`. These files are used as additional context when querying ChatGPT.
+
+When the server starts, any files already in the `uploads/` folder are
+automatically loaded back into the knowledge base.

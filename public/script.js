@@ -11,6 +11,12 @@ document.getElementById('askForm').addEventListener('submit', async (e) => {
       body: JSON.stringify({ text })
     });
 
+    if (!res.ok) {
+      const err = await res.text();
+      resEl.textContent = err;
+      return;
+    }
+
     const data = await res.json();
     resEl.textContent = data.answer || data.error;
   } catch (err) {

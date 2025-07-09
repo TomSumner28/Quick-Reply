@@ -5,6 +5,10 @@ const modeToggle = document.getElementById('modeToggle');
 async function loadKnowledge() {
   fileList.innerHTML = '';
   const res = await fetch('/api/knowledge');
+  if (!res.ok) {
+    fileList.textContent = 'Failed to load files';
+    return;
+  }
   const files = await res.json();
   files.forEach(f => {
     const li = document.createElement('li');

@@ -27,6 +27,18 @@ app.get('/knowledge', (req, res) => {
 
 let knowledgeBase = [];
 
+function loadExistingFiles() {
+  knowledgeBase = [];
+  const files = fs.readdirSync(uploadDir);
+  for (const file of files) {
+    const match = file.match(/^\d+_(.+)$/);
+    const name = match ? match[1] : file;
+    knowledgeBase.push({ path: path.join(uploadDir, file), name });
+  }
+}
+
+loadExistingFiles();
+
 app.post('/api/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' });
