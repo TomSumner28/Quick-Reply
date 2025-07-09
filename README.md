@@ -1,6 +1,6 @@
 # Quick-Reply Portal
 
-This project is a simple web application to send questions or email text to ChatGPT and manage a knowledge base of uploaded documents. The UI offers a dark/light mode toggle and provides a dedicated Knowledge Base page (available at `/knowledge`) for viewing, uploading and deleting documents.
+This project is a simple web application to send questions or the body of an email to ChatGPT. If the text looks like an email, ChatGPT replies with a draft response. Otherwise it answers the question. The interface includes a dark/light mode toggle.
 
 ## Requirements
 
@@ -33,11 +33,6 @@ npm start
 ```
 
 The application runs on `http://localhost:3000`.
-
-Uploaded files are stored in the `uploads/` directory (created automatically at runtime) and can be viewed or removed from `/knowledge`. These files are used as additional context when querying ChatGPT.
-
-When the server starts, any files already in the `uploads/` folder are
-automatically loaded back into the knowledge base.
 
 If the UI displays `Failed to fetch response` the browser could not reach the
 server. Make sure the Node.js process is running and accessible at the
