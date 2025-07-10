@@ -19,14 +19,6 @@ header {
   margin-left: 0.5rem;
 }
 
-.controls .btn {
-  margin-right: 0.5rem;
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  color: inherit;
-}
 
 textarea {
   width: 100%;
@@ -39,40 +31,3 @@ textarea {
   border: 1px solid #ccc;
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 1rem;
-}
-
-body.dark .modal-content {
-  background: #333;
-}
-
-.close {
-  float: right;
-  cursor: pointer;
-}
-
-#fileList li {
-  margin-top: 0.5rem;
-}
-
-#fileList button {
-  margin-left: 0.5rem;
-}
