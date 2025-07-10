@@ -42,6 +42,6 @@ configured URL. If you instead see `API key not configured`, verify that the
 
 ### Knowledge Base
 
-Visit `/knowledge.html` to upload or remove documents. These files are stored in
+Visit `/knowledge` to upload or remove documents. These files are stored in
 the `uploads/` directory (which is ignored by git) and are loaded each time the
 server starts. Their contents help ChatGPT craft more relevant replies.

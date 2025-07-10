@@ -95,7 +95,7 @@ app.delete('/api/knowledge/:name', (req, res) => {
   res.json({ success: true });
 });
 
-app.get('/knowledge.html', (req, res) => {
+app.get('/knowledge', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'knowledge.html'));
 });
 
