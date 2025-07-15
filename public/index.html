@@ -15,12 +15,27 @@
     </div>
   </header>
   <main>
-    <form id="askForm">
-      <input type="email" id="email" placeholder="Your email" required />
-      <textarea id="question" placeholder="Type your question here" required></textarea>
-      <button type="submit">Ask</button>
-    </form>
-    <div id="response"></div>
+    <section id="aiSection">
+      <form id="askForm">
+        <input type="email" id="email" placeholder="Your email" required />
+        <textarea id="question" placeholder="Ask the dashboard" required></textarea>
+        <button type="submit">Ask</button>
+      </form>
+      <div id="response"></div>
+    </section>
+
+    <section id="uploadSection">
+      <h2>Upload Merchant Excel</h2>
+      <form id="excelForm">
+        <input type="file" id="excelFile" accept=".xlsx" />
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <section id="metrics">
+      <h2>Metrics</h2>
+      <pre id="metricsData"></pre>
+    </section>
   </main>
 
   <div id="kbModal" class="modal hidden">

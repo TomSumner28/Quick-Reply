@@ -30,6 +30,12 @@ textarea {
   border: 1px solid #ccc;
 }
 
+#metrics pre {
+  background: #f4f4f4;
+  padding: 1rem;
+  overflow: auto;
+}
+
 .modal {
   position: fixed;
   top: 0;
