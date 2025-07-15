@@ -28,4 +28,4 @@ Uploaded files are stored in the `uploads/` directory and are used as additional
 
 ## Deployment on Vercel
 
-A `vercel.json` configuration is provided so the Express server can run as a serverless function. When you push the repository to Vercel, it will automatically build and serve `server.js` under the `/api` routes. The configuration also rewrites all paths to this server so that API calls such as `/api/upload` work correctly.
+A `vercel.json` configuration is provided so the Express server can run as a serverless function. When you push the repository to Vercel, it will automatically build and serve `server.js` under the `/api` routes. The configuration rewrites all paths to `/api/server.js` so that the Express server handles every request and API calls such as `/api/upload` work correctly.
